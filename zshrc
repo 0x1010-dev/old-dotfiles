@@ -10,6 +10,7 @@ source $HOME/.antigen.zsh
 
 # load plugins
 antigen use oh-my-zsh
+antigen bundle z
 antigen bundle git
 antigen bundle docker
 antigen bundle vscode
@@ -27,6 +28,10 @@ if [[ $$OSTYPE == darwin* ]]; then
     alias x86="arch -x86_64"
     alias ibrew="arch -x86_64 /usr/local/bin/brew"
 fi
+
+rdpt() {
+    ssh -L 3389:$1:3389 10.8.1.20 -N -v
+}
 
 # wsl x server
 if [[ $(uname -r) == ^*Microsoft$ ]]; then
