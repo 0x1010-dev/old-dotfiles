@@ -12,6 +12,7 @@ source $HOME/.antigen.zsh
 antigen use oh-my-zsh
 antigen bundle git
 antigen bundle docker
+antigen bundle vscode
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
 
@@ -22,8 +23,18 @@ antigen theme romkatv/powerlevel10k
 antigen apply
 
 # aliases
-alias x86="arch -x86_64"
-alias ibrew="arch -x86_64 /usr/local/bin/brew"
+if [[ $$OSTYPE == darwin* ]]; then
+    alias x86="arch -x86_64"
+    alias ibrew="arch -x86_64 /usr/local/bin/brew"
+fi
+
+# wsl x server
+if [[ $(uname -r) == ^*Microsoft$ ]]; then
+    export DISPLAY=$(cat /etc/resolve.conf | grep nameserver | awk '{print $2; exit;}'):0.0
+fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
