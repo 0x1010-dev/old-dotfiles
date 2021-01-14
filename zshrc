@@ -24,7 +24,7 @@ antigen theme romkatv/powerlevel10k
 antigen apply
 
 # aliases
-if [[ $$OSTYPE == darwin* ]]; then
+if [[ $OSTYPE == darwin* ]]; then
     alias x86="arch -x86_64"
     alias ibrew="arch -x86_64 /usr/local/bin/brew"
 fi
