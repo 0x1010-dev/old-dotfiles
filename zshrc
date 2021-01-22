@@ -20,6 +20,7 @@ antigen bundle docker
 antigen bundle vscode
 antigen bundle mattberther/zsh-pyenv
 antigen bundle lukechilds/zsh-nvm
+antigen bundle greymd/docker-zsh-completion
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
 
