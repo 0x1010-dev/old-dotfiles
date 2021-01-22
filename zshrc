@@ -8,12 +8,18 @@ fi
 # load antigen
 source $HOME/.antigen.zsh
 
+# plugin configs
+export NVM_COMPLETION=true
+export NVM_AUTO_USE=true
+
 # load plugins
 antigen use oh-my-zsh
 antigen bundle z
 antigen bundle git
 antigen bundle docker
 antigen bundle vscode
+antigen bundle mattberther/zsh-pyenv
+antigen bundle lukechilds/zsh-nvm
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
 
@@ -28,10 +34,6 @@ if [[ $OSTYPE == darwin* ]]; then
     alias x86="arch -x86_64"
     alias ibrew="arch -x86_64 /usr/local/bin/brew"
 fi
-
-rdpt() {
-    ssh -L 3389:$1:3389 10.8.1.20 -N -v
-}
 
 # wsl x server
 if [[ $(uname -r) == ^*Microsoft$ ]]; then
