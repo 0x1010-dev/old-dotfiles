@@ -18,8 +18,6 @@ antigen bundle z
 antigen bundle git
 antigen bundle docker
 antigen bundle vscode
-antigen bundle mattberther/zsh-pyenv
-# antigen bundle lukechilds/zsh-nvm
 antigen bundle greymd/docker-zsh-completion
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
@@ -40,6 +38,11 @@ fi
 if [[ $(uname -r) == ^*Microsoft$ ]]; then
     export DISPLAY=$(cat /etc/resolve.conf | grep nameserver | awk '{print $2; exit;}'):0.0
 fi
+
+# tools
+portfwd() {
+    ssh -L $1:$2:$1 $3 -Nv
+}
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
