@@ -36,6 +36,12 @@ if [[ $OSTYPE == darwin* ]]; then
     alias ibrew="arch -x86_64 /usr/local/bin/brew"
 fi
 
+alias psh="poetry shell"
+alias padd="poetry add"
+alias premove="poetry remove"
+alias pinstall="poetry install"
+alias pupdate="poetry update"
+
 # wsl x server
 if [[ $(uname -r) == ^*Microsoft$ ]]; then
     export DISPLAY=$(cat /etc/resolve.conf | grep nameserver | awk '{print $2; exit;}'):0.0
