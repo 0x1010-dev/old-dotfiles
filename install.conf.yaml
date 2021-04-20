@@ -8,6 +8,7 @@
     ~/.antigen.zsh: antigen.zsh
     ~/.zshrc: zshrc
     ~/.p10k.zsh: p10k.zsh
+    ~/.vimrc: vimrc
 
 - shell:
     - [git submodule update --init --recursive, Installing submodules ->]
