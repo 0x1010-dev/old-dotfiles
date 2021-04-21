@@ -30,7 +30,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'airblade/vim-gitgutter'
     Plug 'scrooloose/nerdtree'
     Plug 'scrooloose/nerdcommenter'
-    Plug 'jiangmiao/auto-pairs'
+    Plug 'mg979/vim-visual-multi'
 
     " language
     Plug 'sheerun/vim-polyglot'
@@ -43,15 +43,18 @@ call plug#end()
 """"""""""""""""""""""""""""""""""""""""
 
 " airline
-let g:airline#extensions#tabline#enable = 1
+let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'onedark'
 
 " nerdtree
 nnoremap <C-b> :NERDTreeFocus<CR>
 
+" visual multi
+let g:VM_show_warnings = 0
+
 " CoC Extensions
-let g:coc_global_extensions = ['coc-pyright', 'coc-html', 'coc-toml', 'coc-tsserver', 'coc-vetur', 'coc-json']
+let g:coc_global_extensions = ['coc-pairs', 'coc-pyright', 'coc-html', 'coc-toml', 'coc-tsserver', 'coc-vetur', 'coc-json']
 
 " CoC Mappings
 " tab to trigger completion with characters ahead and navigate
@@ -197,19 +200,6 @@ map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove
 map <leader>t<leader> :tabnext
-
-" move line of text using ALT+[jk] or Command+[jk]
-nmap <M-j> mz:m+<cr>`z
-nmap <M-k> mz:m-2<cr>`z
-vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
-vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
-
-if has("mac") || has("macunix")
-    nmap <D-j> <M-j>
-    nmap <D-k> <M-k>
-    vmap <D-j> <M-j>
-    vmap <D-k> <M-k>
-endif
 
 """"""""""""""""""""""""""""""""""""""""
 " => General

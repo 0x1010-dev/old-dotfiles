@@ -9,6 +9,7 @@
     ~/.zshrc: zshrc
     ~/.p10k.zsh: p10k.zsh
     ~/.vimrc: vimrc
+    ~/.vim/coc-settings.json: coc-settings.json
 
 - shell:
     - [git submodule update --init --recursive, Installing submodules ->]
