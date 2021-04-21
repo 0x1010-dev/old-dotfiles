@@ -26,8 +26,11 @@ call plug#begin('~/.vim/plugged')
     " tools
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'tpope/vim-fugitive'
+    Plug 'tpope/vim-surround'
     Plug 'airblade/vim-gitgutter'
     Plug 'scrooloose/nerdtree'
+    Plug 'scrooloose/nerdcommenter'
+    Plug 'jiangmiao/auto-pairs'
 
     " language
     Plug 'sheerun/vim-polyglot'
@@ -46,6 +49,9 @@ let g:airline_theme = 'onedark'
 
 " nerdtree
 nnoremap <C-b> :NERDTreeFocus<CR>
+
+" CoC Extensions
+let g:coc_global_extensions = ['coc-pyright', 'coc-html', 'coc-toml', 'coc-tsserver', 'coc-vetur', 'coc-json']
 
 " CoC Mappings
 " tab to trigger completion with characters ahead and navigate
@@ -69,8 +75,13 @@ endif
 
 " map <CR> auto-select the first completion item and notify coc to
 " format on enter
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-    \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+" inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+    "\: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " GoTo code navigation
 nmap <silent> gd <Plug>(coc-definition)
@@ -230,6 +241,9 @@ set encoding=utf-8
 """"""""""""""""""""""""""""""""""""""""
 " => VIM UI
 """"""""""""""""""""""""""""""""""""""""
+
+" mouse mode
+set mouse=a
 
 " wild menu
 set wildmenu
