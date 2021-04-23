@@ -239,7 +239,6 @@ set mouse=a
 set wildmenu
 
 " show current position
-set ruler
 set number
 
 " configure backspace
