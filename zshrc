@@ -8,10 +8,6 @@ fi
 # load antigen
 source $HOME/.antigen.zsh
 
-# plugin configs
-export NVM_COMPLETION=true
-export NVM_AUTO_USE=true
-
 # load plugins
 antigen use oh-my-zsh
 antigen bundle z
