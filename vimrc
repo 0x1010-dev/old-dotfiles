@@ -24,6 +24,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'joshdick/onedark.vim'
 
     " tools
+    Plug 'tpope/vim-sensible'
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-surround'
@@ -205,17 +206,6 @@ map <leader>t<leader> :tabnext
 " => General
 """"""""""""""""""""""""""""""""""""""""
 
-" longer history
-set history=5000
-
-" filetype plugins
-filetype plugin on
-filetype indent on
-
-" auto read when file changes
-set autoread
-au FocusGained,BufEnter *  checktime
-
 " fast saving
 nmap <leader>w :w!<cr>
 
@@ -225,9 +215,6 @@ command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
 " last edit position when opening files
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
-" encoding
-set encoding=utf-8
-
 """"""""""""""""""""""""""""""""""""""""
 " => VIM UI
 """"""""""""""""""""""""""""""""""""""""
@@ -235,22 +222,16 @@ set encoding=utf-8
 " mouse mode
 set mouse=a
 
-" wild menu
-set wildmenu
-
 " show current position
-set ruler
 set number
 
 " configure backspace
-set backspace=eol,start,indent
-set whichwrap+=<,>,h,l
+set whichwrap+=<,>,h,l,[,]
 
 " search options
 set ignorecase
 set smartcase
 set hlsearch
-set incsearch
 set magic
 
 " matching braces
@@ -274,7 +255,6 @@ set signcolumn=yes
 """"""""""""""""""""""""""""""""""""""""
 
 " syntax highlighting
-syntax on
 colorscheme onedark
 
 " no background
