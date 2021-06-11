@@ -1,0 +1,33 @@
+# auto load script additions
+sudo yabai --load-sa
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+
+# appearance settings
+yabai -m config window_opacity          on
+yabai -m config window_opacity_duration 0.5
+yabai -m config active_window_opacity   1.00
+yabai -m config normal_window_opacity   0.85
+
+# mouse settings
+yabai -m config mouse_modifier          cmd
+yabai -m config mouse_action1           move
+yabai -m config mouse_action2           resize
+yabai -m config mouse_drop_action       swap
+# yabai -m config focus_follows_mouse     autofocus
+
+# layout settings
+yabai -m config split_ratio             0.65
+yabai -m config layout                  bsp
+yabai -m config top_padding             38
+yabai -m config bottom_padding          16
+yabai -m config left_padding            16
+yabai -m config right_padding           16
+yabai -m config window_gap              16
+
+# overrides
+yabai -m rule --add label=Mail app=Mail manage=off
+yabai -m rule --add label=SysPref app="System Preferences" manage=off
+yabai -m rule --add label=Zoom app="zoom.us" manage=off
+yabai -m rule --add label=Spotify app=Spotify manage=off
+yabai -m rule --add label=Finder app=Finder manage=off
+yabai -m rule --add label=ActMon app="Activity Monitor" manage=off

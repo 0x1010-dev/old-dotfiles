@@ -1,15 +1,16 @@
 - defaults:
     link:
         relink: true
+        create: true
 
 - clean: ['~']
 
 - link:
-    ~/.antigen.zsh: antigen.zsh
-    ~/.zshrc: zshrc
-    ~/.p10k.zsh: p10k.zsh
-    ~/.vimrc: vimrc
-    ~/.vim/coc-settings.json: coc-settings.json
+    ~/.vim: vim
+    ~/:
+        glob: true
+        path: dots/*
+        prefix: '.'
 
 - shell:
     - [git submodule update --init --recursive, Installing submodules ->]
