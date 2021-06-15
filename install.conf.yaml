@@ -6,7 +6,13 @@
 - clean: ['~']
 
 - link:
-    ~/.vim: vim
+    ~/.vim/:
+        glob: true
+        path: vim/*
+    ~/.hammerspoon:
+        if: '[ `uname` = Darwin ]'
+        path: hammerspoon
+    ~/.scripts: scripts
     ~/:
         glob: true
         path: dots/*
