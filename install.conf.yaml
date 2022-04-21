@@ -6,15 +6,42 @@
 - clean: ['~']
 
 - link:
-    ~/.vim/:
+    ~/.config/:
         glob: true
-        path: vim/*
-    ~/.scripts: scripts
+        path: configs/*
     ~/:
         glob: true
         path: dots/*
         prefix: '.'
+    ~/.vim/:
+        glob: true
+        path: configs/vim/*
+
+- ifmacos:
+    - install-brew: true
+    - brew:
+        - git
+        - git-lfs
+        - zsh
+        - neovim
+        - fzf
+        - lazygit
+        - ncdu
+        - htop
+
+- ifarch:
+    - yay:
+        - git
+        - git-lfs
+        - zsh
+        - neovim
+        - fzf
+        - lazygit
+        - ncdu
+        - htop
+        
 
 - shell:
     - [git submodule update --init --recursive, Installing submodules ->]
+    - [nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync']
     - [exec zsh, Restarting shell ->]

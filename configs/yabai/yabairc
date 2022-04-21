@@ -1,0 +1,38 @@
+# load script additions
+sudo yabai --load-sa
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+
+# appearance settings
+yabai -m config insert_feedback_color           0x00FFFFFF
+yabai -m config window_opacity                  on
+yabai -m config window_opacity_duration         0.75
+yabai -m config active_window_opacity           1.00
+yabai -m config normal_window_opacity           0.95
+yabai -m config window_shadow                   float
+yabai -m config window_border                   on
+yabai -m config normal_window_border_color      0x00555555
+yabai -m config active_window_border_color      0x001366FC
+
+# mouse settings
+yabai -m config mouse_modifier          alt
+yabai -m config mouse_action1           move
+yabai -m config mouse_action2           resize
+yabai -m config mouse_drop_action       swap
+
+# layout settings
+yabai -m config split_ratio             0.65
+yabai -m config window_placement        second_child
+yabai -m config window_origin_display   focused
+yabai -m config top_padding             16
+yabai -m config bottom_padding          16
+yabai -m config left_padding            16
+yabai -m config right_padding           16
+yabai -m config window_gap              16
+yabai -m config layout                  bsp
+
+# overrides
+export UNMANAGED="^(Bitwarden|Disk Utility|Notability|Python|Reminders|PrusaSlicer|Raycast|Viscosity|Gifox|Docker Desktop|Microsoft Remote Desktop|Google Drive|Grammarly Desktop|NordVPN|Notes|Spark|Messages|Calendar|zoom.us|Microsoft Teams|WhatsApp|Spotify|System Information|System Preferences|Activity Monitor|Finder|Preview|App Store|Stats)$"
+
+yabai -m rule --add app="${UNMANAGED}" manage=off 
+yabai -m rule --add app="Hammerspoon" manage=off layer="below"
+

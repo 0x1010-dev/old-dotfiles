@@ -1,5 +1,0 @@
-# python poetry
-alias psh="poetry shell"
-alias pi="poetry install"
-alias pr="poetry remove"
-alias pu="poetry update"
