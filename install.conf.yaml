@@ -18,6 +18,3 @@
         glob: true
         path: configs/vim/*
 
-- shell:
-    - [nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync', Setting up neovim ->]
-    - [chsh -s $(which zsh), Making ZSH the default shell ->]
