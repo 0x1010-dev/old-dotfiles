@@ -2,15 +2,6 @@
 	path = dotbot
 	url = https://github.com/anishathalye/dotbot
 	ignore = dirty
-[submodule "dotbot-ifplatform"]
-	path = plugins/if-platform
-	url = https://github.com/ssbanerje/dotbot-ifplatform.git
 [submodule "configs/nvim"]
 	path = configs/nvim
 	url = https://github.com/AstroNvim/AstroNvim
-[submodule "plugins/brew"]
-	path = plugins/brew
-	url = https://github.com/wren/dotbot-brew.git
-[submodule "plugins/yay"]
-	path = plugins/yay
-	url = https://github.com/oxson/dotbot-yay

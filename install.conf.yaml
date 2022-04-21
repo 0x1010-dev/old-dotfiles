@@ -13,35 +13,11 @@
         glob: true
         path: dots/*
         prefix: '.'
+        force: true
     ~/.vim/:
         glob: true
         path: configs/vim/*
 
-- ifmacos:
-    - install-brew: true
-    - brew:
-        - git
-        - git-lfs
-        - zsh
-        - neovim
-        - fzf
-        - lazygit
-        - ncdu
-        - htop
-
-- ifarch:
-    - yay:
-        - git
-        - git-lfs
-        - zsh
-        - neovim
-        - fzf
-        - lazygit
-        - ncdu
-        - htop
-        
-
 - shell:
-    - [git submodule update --init --recursive, Installing submodules ->]
-    - [nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync']
-    - [exec zsh, Restarting shell ->]
+    - [nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync', Setting up neovim ->]
+    - [chsh -s $(which zsh), Making ZSH the default shell ->]
