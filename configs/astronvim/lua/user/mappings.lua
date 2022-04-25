@@ -1,8 +1,10 @@
 return {
     setup = function()
-        local map = vim.keymap.set
+        local wk = require('which-key')
 
         -- suda.vim
-        map("n", "<leader>W", ":SudaWrite<CR>")
+        wk.register({
+            W = { "<cmd>SudaWrite<cr>", "Sudo Save" }
+        }, { prefix = "<leader>" })
     end
 }
