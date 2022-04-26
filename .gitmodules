@@ -5,3 +5,4 @@
 [submodule "configs/nvim"]
 	path = configs/nvim
 	url = https://github.com/AstroNvim/AstroNvim
+	branch = main
