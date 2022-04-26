@@ -43,10 +43,10 @@ case $1 in
   focus-window)
     case $2 in
       north)
-        yabai -m window --focus north || yabai -m space --focus prev
+        yabai -m window --focus north 
         ;;
       south)
-        yabai -m window --focus south || yabai -m space --focus next
+        yabai -m window --focus south 
         ;;
       west)
         yabai -m window --focus west || yabai -m space --focus prev
