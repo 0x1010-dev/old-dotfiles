@@ -43,10 +43,10 @@ case $1 in
   focus-window)
     case $2 in
       north)
-        yabai -m window --focus north 
+        yabai -m window --focus north || yabai -m display --focus north 
         ;;
       south)
-        yabai -m window --focus south 
+        yabai -m window --focus south || yabai -m display --focus south
         ;;
       west)
         yabai -m window --focus west || yabai -m space --focus prev
@@ -68,7 +68,16 @@ case $1 in
 
   move-window)
     if [[ $w_fl == "false" ]]; then
-      yabai -m window --swap $2 || yabai -m window --display $2
+      case $2 in 
+        west)
+          yabai -m window --swap $2 || yabai -m window --space prev || yabai -m window --display $2
+          ;;
+        east)
+          yabai -m window --swap $2 || yabai -m window --space next || yabai -m window --display $2
+          ;;
+        *)
+          yabai -m window --swap $2 || yabai -m window --display $2
+      esac
       yabai -m window --focus $w_id
       hlActiveWindow
     else
