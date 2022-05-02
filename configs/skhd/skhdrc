@@ -1,54 +1,87 @@
-# focus
-cmd - 1                 : yabai -m space --focus 1
-cmd - 2                 : yabai -m space --focus 2
-cmd - 3                 : yabai -m space --focus 3
-cmd - 4                 : yabai -m space --focus 4
-#cmd + shift - 1         : yabai -m window --space 1 && yabai -m space --focus 1
-#cmd + shift - 2         : yabai -m window --space 2 && yabai -m space --focus 2
-#cmd + shift - 3         : yabai -m window --space 3 && yabai -m space --focus 3
-#cmd + shift - 4         : yabai -m window --space 4 && yabai -m space --focus 4
-cmd - up                : ~/.scripts/yabai-helper focus-window north
-cmd - down              : ~/.scripts/yabai-helper focus-window south
-cmd - left              : ~/.scripts/yabai-helper focus-window west
-cmd - right             : ~/.scripts/yabai-helper focus-window east
-cmd - pageup            : ~/.scripts/yabai-helper focus-window stack.prev
-cmd - pagedown          : ~/.scripts/yabai-helper focus-window stack.next
-fn + cmd - up           : ~/.scripts/yabai-helper focus-window stack.prev
-fn + cmd - down         : ~/.scripts/yabai-helper focus-window stack.next
 
-# move
-alt + cmd - up          : ~/.scripts/yabai-helper stack-window north
-alt + cmd - down        : ~/.scripts/yabai-helper stack-window south
-alt + cmd - left        : ~/.scripts/yabai-helper stack-window west
-alt + cmd - right       : ~/.scripts/yabai-helper stack-window east
-shift + cmd - up        : ~/.scripts/yabai-helper move-window north 
-shift + cmd - down      : ~/.scripts/yabai-helper move-window south
-shift + cmd - left      : ~/.scripts/yabai-helper move-window west
-shift + cmd - right     : ~/.scripts/yabai-helper move-window east
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+# -> KEY MAPPINGS <-
+#
+# NAVIGATION
+#  cmd                 - arrows        : focus [window > display > space]
+#  cmd + lalt          - up/down       : focus stack
+#  lctrl               - left/right    : focus space (mission control)
+# 
+# MOVEMENT
+#  cmd + shift         - arrows        : move to [window > display > space]
+#  cmd + shift + lalt  - arrows        : move and stack/unstack window
+#  cmd + shift         - space         : move to center (when floating)
+#  lctrl + shift       - left/right    : move to space
+# 
+# MANIPULATION
+#  cmd + lctrl         - arrows        : resize windows
+#  cmd + lctrl         - space         : toggle float
+#  cmd + lctrl         - g             : toggle zoom-fullscreen
+#  cmd + lctrl         - t             : toggle topmost
+#  cmd + lctrl         - l             : toggle layout
+# 
+# TERMINAL 
+#  cmd + shift         - return        : open terminal
+#  cmd + shift + lalt  - return        : open stacked terminal
+#
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+
+# focus [window > display > space]
+cmd - up                    : ~/.local/bin/yabai-helper focus-window north
+cmd - down                  : ~/.local/bin/yabai-helper focus-window south
+cmd - left                  : ~/.local/bin/yabai-helper focus-window west
+cmd - right                 : ~/.local/bin/yabai-helper focus-window east
+
+# focus stack
+cmd + lalt - up             : ~/.local/bin/yabai-helper focus-window stack.prev
+cmd + lalt - down           : ~/.local/bin/yabai-helper focus-window stack.next
+
+# focus space (mission control or uncomment for instant)
+#lctrl - left                : yabai -m space --focus prev
+#lctrl - right               : yabai -m space --focus next
+
+# move to [window > display > space]
+cmd + shift - up            : ~/.local/bin/yabai-helper move-window north 
+cmd + shift - down          : ~/.local/bin/yabai-helper move-window south
+cmd + shift - left          : ~/.local/bin/yabai-helper move-window west
+cmd + shift - right         : ~/.local/bin/yabai-helper move-window east
+cmd + shift - space         : ~/.local/bin/yabai-helper move-window center
+
+# move and stack/unstack window
+cmd + shift + lalt - up     : ~/.local/bin/yabai-helper move-window stack.north
+cmd + shift + lalt - down   : ~/.local/bin/yabai-helper move-window stack.south
+cmd + shift + lalt - left   : ~/.local/bin/yabai-helper move-window stack.west
+cmd + shift + lalt - right  : ~/.local/bin/yabai-helper move-window stack.east
+
+# move to space
+lctrl + shift - left        : ~/.local/bin/yabai-helper move-window space.prev
+lctrl + shift - right       : ~/.local/bin/yabai-helper move-window space.next
 
 # resize windows
-lctrl + cmd - left      : yabai -m window --resize left:-50:0; \
-                          yabai -m window --resize right:-50:0
-lctrl + cmd - down      : yabai -m window --resize bottom:0:50; \
-                          yabai -m window --resize top:0:50
-lctrl + cmd - up        : yabai -m window --resize top:0:-50; \
-                          yabai -m window --resize bottom:0:-50
-lctrl + cmd - right     : yabai -m window --resize right:50:0; \
-                          yabai -m window --resize left:50:0
-
-# open terminal
-shift + cmd - return            : osascript -e 'tell app "iTerm2" to create window with default profile'
-alt + shift + cmd - return      : yabai -m window --insert stack; osascript -e 'tell app "iTerm2" to create window with default profile'
+cmd + lctrl - left          : yabai -m window --resize left:-50:0; \
+                              yabai -m window --resize right:-50:0
+cmd + lctrl - down          : yabai -m window --resize bottom:0:50; \
+                              yabai -m window --resize top:0:50
+cmd + lctrl - up            : yabai -m window --resize top:0:-50; \
+                              yabai -m window --resize bottom:0:-50
+cmd + lctrl - right         : yabai -m window --resize right:50:0; \
+                              yabai -m window --resize left:50:0
 
 # toggle float
-shift + cmd - space             : yabai -m window --toggle float; \
-                                    yabai -m window --grid 6:6:1:1:4:4
+cmd + lctrl - space         : yabai -m window --toggle float; \
+                              yabai -m window --grid 6:6:1:1:4:4
 
-# toggle managed
-cmd + alt + shift - space       : ~/.scripts/yabai-helper toggle-layout
-
-# toggle fullscreen
-cmd + alt + shift - f           : yabai -m window --toggle zoom-fullscreen
+# toggle zoom-fullscreen
+cmd + lctrl - g             : yabai -m window --toggle zoom-fullscreen
 
 # toggle topmost
-cmd + alt + shift - t           : yabai -m window --toggle topmost
+cmd + lctrl - t             : yabai -m window --toggle topmost
+
+# toggle layout
+cmd + lctrl - l             : ~/.local/bin/yabai-helper toggle-layout
+
+# open terminal
+cmd + shift - return        : osascript -e 'tell app "iTerm2" to create window with default profile'
+cmd + shift + lalt - return : yabai -m window --insert stack; osascript -e 'tell app "iTerm2" to create window with default profile'
+
+

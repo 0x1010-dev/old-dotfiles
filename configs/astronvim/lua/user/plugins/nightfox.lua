@@ -16,7 +16,8 @@ return {
             neogit = false,
             nvimtree = false,
             pounce = false,
-            sneak = false
+            sneak = false,
+            symbols_outline = false
         }
     },
     groups = {
@@ -24,6 +25,9 @@ return {
         NormalFloat = { link = "Normal" },
         -- TelescopeBorder = { bg = "bg1" },
         TelescopePromptCounter = { link = "TelescopePromptNormal" },
-        TelescopePromptPrefix = { link = "TelescopePromptNormal" }
+        TelescopePromptPrefix = { link = "TelescopePromptNormal" },
+        HighlightURL = { style = "underline" },
+        AerialLine = { link = "Search" },
+        AerialGuide = { link = "NeoTreeIndentMarker" }
     }
 }

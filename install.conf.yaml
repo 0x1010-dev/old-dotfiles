@@ -17,4 +17,8 @@
     ~/.vim/:
         glob: true
         path: configs/vim/*
+    ~/.local/bin/:
+        glob: true
+        path: bin/*
+        create: true
 
