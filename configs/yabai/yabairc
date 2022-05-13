@@ -30,8 +30,11 @@ yabai -m config right_padding           16
 yabai -m config window_gap              16
 yabai -m config layout                  bsp
 
+# fix layout on screen changes
+yabai -m signal event="display_resized" action="yabai -m space --toggle gap; yabai -m space --toggle gap"
+
 # overrides
-export UNMANAGED="^(Installer|Bitwarden|Disk Utility|Notability|Python|Reminders|PrusaSlicer|Raycast|Viscosity|Gifox|Docker Desktop|Microsoft Remote Desktop|Google Drive|Grammarly Desktop|NordVPN|Notes|Spark|Messages|Calendar|zoom.us|Microsoft Teams|WhatsApp|Spotify|System Information|System Preferences|Activity Monitor|Finder|Preview|App Store|Stats)$"
+export UNMANAGED="^(Font Book|Installer|Bitwarden|Disk Utility|Notability|Python|Reminders|PrusaSlicer|Raycast|Viscosity|Gifox|Docker Desktop|Microsoft Remote Desktop|Google Drive|Grammarly Desktop|NordVPN|Notes|Spark|Messages|Calendar|zoom.us|Microsoft Teams|WhatsApp|Spotify|System Information|System Preferences|Activity Monitor|Finder|Preview|App Store|Stats)$"
 
 yabai -m rule --add app="${UNMANAGED}" manage=off 
 yabai -m rule --add app="Hammerspoon" manage=off layer="below"

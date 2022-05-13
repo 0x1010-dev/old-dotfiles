@@ -13,13 +13,19 @@ source $CONFIG/antigen
 
 # load plugins
 antigen use oh-my-zsh
-antigen bundle z
 antigen bundle git
+antigen bundle gh
+antigen bundle rsync
+antigen bundle poetry
 antigen bundle docker
+antigen bundle docker-compose
 antigen bundle vscode
+antigen bundle vi-mode
+antigen bundle agkozak/zsh-z
 antigen bundle greymd/docker-zsh-completion
-antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle zsh-users/zsh-syntax-highlighting
+# antigen bundle jeffreytse/zsh-vi-mode
 
 # load theme
 antigen theme romkatv/powerlevel10k
@@ -36,6 +42,7 @@ antigen apply
 
 # personal configuration
 [[ ! -f $CONFIG/.personal ]] || source $CONFIG/.personal
+
 
 # iterm2 integration
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"

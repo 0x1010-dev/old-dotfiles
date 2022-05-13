@@ -80,6 +80,9 @@ cmd + lctrl - t             : yabai -m window --toggle topmost
 # toggle layout
 cmd + lctrl - l             : ~/.local/bin/yabai-helper toggle-layout
 
+# toggle show-desktop
+cmd + lctrl - d             : yabai -m space --toggle show-desktop
+
 # open terminal
 cmd + shift - return        : osascript -e 'tell app "iTerm2" to create window with default profile'
 cmd + shift + lalt - return : yabai -m window --insert stack; osascript -e 'tell app "iTerm2" to create window with default profile'
