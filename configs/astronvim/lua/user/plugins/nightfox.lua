@@ -20,7 +20,7 @@ return {
             symbols_outline = false
         }
     },
-    groups = {
+    all = {
         MiniIndentscopeSymbol = { link = "PreProc" },
         NormalFloat = { link = "Normal" },
         -- TelescopeBorder = { bg = "bg1" },
