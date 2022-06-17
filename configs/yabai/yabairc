@@ -34,8 +34,10 @@ yabai -m config layout                  bsp
 yabai -m signal event="display_resized" action="yabai -m space --toggle gap; yabai -m space --toggle gap"
 
 # overrides
-export UNMANAGED="^(Font Book|Installer|Bitwarden|Disk Utility|Notability|Python|Reminders|PrusaSlicer|Raycast|Viscosity|Gifox|Docker Desktop|Microsoft Remote Desktop|Google Drive|Grammarly Desktop|NordVPN|Notes|Spark|Messages|Calendar|zoom.us|Microsoft Teams|WhatsApp|Spotify|System Information|System Preferences|Activity Monitor|Finder|Preview|App Store|Stats)$"
+export UNMANAGED="^(Music|Photos|Font Book|Installer|Bitwarden|Disk Utility|Notability|Python|Reminders|PrusaSlicer|Raycast|Viscosity|Gifox|Docker Desktop|Microsoft Remote Desktop|Google Drive|Grammarly Desktop|NordVPN|Notes|Spark|Messages|Calendar|zoom.us|Microsoft Teams|WhatsApp|Spotify|System Information|System Preferences|Activity Monitor|Finder|Preview|App Store|Stats|Find My)$"
+export AUTO_STACK="^(Code)$"
 
 yabai -m rule --add app="${UNMANAGED}" manage=off 
 yabai -m rule --add app="Hammerspoon" manage=off layer="below"
+yabai -m signal --add app="${AUTO_STACK}" event=window_created action="~/.local/bin/yabai-helper auto-stack"
 
