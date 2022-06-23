@@ -124,7 +124,7 @@ case $1 in
   auto-stack)
     # grab most-recent window of the same app
     target=$(yabai -m query --windows --space mouse \
-      | jq -r 'map(select(.app=="'$w_app'" and ."is-minimized"==false and ."is-floating"==false and ."has-focus"==false))[0].id')
+      | jq -r 'map(select(.app=='$w_app' and ."is-minimized"==false and ."is-floating"==false and ."has-focus"==false))[0].id')
     # stack current window on it
     yabai -m window $target --stack $w_id
     ;;
