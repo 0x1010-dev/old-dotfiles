@@ -1,6 +1,6 @@
 #!/opt/homebrew/bin/bash
 pidfile=/tmp/yabai-helper-pid
-IFS=$'\n' read -d '' -r w_id w_fl w_app <<< $(yabai -m query --windows --window | jq '.id, ."is-floating", .app')
+IFS=$'\n' read -d '' -r w_id w_fl w_app <<<$(yabai -m query --windows --window | jq '.id, ."is-floating", .app')
 
 ## Configuration
 
@@ -15,123 +15,122 @@ GRID_SOUTH="3:3:2:1:1:2"
 ## Functions
 
 hlActiveWindow() {
-  # get active color without transparency
-  color=$(yabai -m config active_window_border_color)
-  color=${color: 2}
-  color=$(printf %6s "${color: -6}" | tr ' ' 0)
+	# get active color without transparency
+	color=$(yabai -m config active_window_border_color)
+	color=${color:2}
+	color=$(printf %6s "${color: -6}" | tr ' ' 0)
 
-  # animate
-  for i in $(seq 255 -12 0)
-  do
-    s=$(printf '%x' $i);
-    yabai -m config active_window_border_color 0x${s}${color}
-  done
+	# animate
+	for i in $(seq 255 -12 0); do
+		s=$(printf '%x' $i)
+		yabai -m config active_window_border_color 0x${s}${color}
+	done
 }
 
 ## Initialization
 
 # if another instance exists, kill it
 if [[ -f "$pidfile" ]]; then
-  kill -9 $(<"$pidfile")
+	kill -9 $(<"$pidfile")
 fi
 
 # store our pid so we can be killed
-echo $$ > $pidfile
+echo $$ >$pidfile
 
 ## Parse Arguments
 
-case $1 in 
-  focus-window)
-    case $2 in
-      north | south)
-        yabai -m window --focus $2 || yabai -m display --focus $2 
-        ;;
-      west)
-        yabai -m window --focus west || yabai -m display --focus west || yabai -m space --focus prev
-        ;;
-      east)
-        yabai -m window --focus east || yabai -m display --focus east || yabai -m space --focus next
-        ;;
-      stack.prev)
-        yabai -m window --focus stack.prev || yabai -m window --focus stack.last
-        ;;
-      stack.next)
-        yabai -m window --focus stack.next || yabai -m window --focus stack.first
-        ;;
-      *)
-        echo -n "Invalid argument for focus-window."
-        ;;
-    esac
-    hlActiveWindow
-    ;;
+case $1 in
+focus-window)
+	case $2 in
+	north | south)
+		yabai -m window --focus $2 || yabai -m display --focus $2
+		;;
+	west)
+		yabai -m window --focus west || yabai -m display --focus west || yabai -m space --focus prev
+		;;
+	east)
+		yabai -m window --focus east || yabai -m display --focus east || yabai -m space --focus next
+		;;
+	stack.prev)
+		yabai -m window --focus stack.prev || yabai -m window --focus stack.last
+		;;
+	stack.next)
+		yabai -m window --focus stack.next || yabai -m window --focus stack.first
+		;;
+	*)
+		echo -n "Invalid argument for focus-window."
+		;;
+	esac
+	# hlActiveWindow
+	;;
 
-  move-window)
-    if [[ $w_fl == "false" ]]; then
-      case $2 in 
-        west)
-          yabai -m window --swap $2 || yabai -m window --display $2 || yabai -m window --space prev 
-          ;;
-        east)
-          yabai -m window --swap $2 || yabai -m window --display $2 || yabai -m window --space next 
-          ;;
-        space.*)
-          yabai -m window --space $(cut -d "." -f 2 <<< $2)
-          ;;
-        stack.*)
-          dir=$(cut -d "." -f 2 <<< $2)
-          yabai -m window $dir --stack $w_id
-          if [[  $? -ne 0 ]]; then
-            yabai -m window --insert $dir
-            yabai -m window $window --toggle float
-            yabai -m window $window --toggle float
-          fi
-          ;;
-        *)
-          yabai -m window --swap $2 || yabai -m window --display $2
-          ;;
-      esac
-      yabai -m window --focus $w_id
-      hlActiveWindow
-    else
-      case $2 in
-        center) yabai -m window --grid $GRID_CENTER ;;
-        north) yabai -m window --grid $GRID_NORTH ;;
-        south) yabai -m window --grid $GRID_SOUTH ;;
-        east) yabai -m window --grid $GRID_EAST ;;
-        west) yabai -m window --grid $GRID_WEST ;;
-      esac
-    fi
-    ;;
+move-window)
+	if [[ $w_fl == "false" ]]; then
+		case $2 in
+		west)
+			yabai -m window --swap $2 || yabai -m window --display $2 || yabai -m window --space prev
+			;;
+		east)
+			yabai -m window --swap $2 || yabai -m window --display $2 || yabai -m window --space next
+			;;
+		space.*)
+			yabai -m window --space $(cut -d "." -f 2 <<<$2)
+			;;
+		stack.*)
+			dir=$(cut -d "." -f 2 <<<$2)
+			yabai -m window $dir --stack $w_id
+			if [[ $? -ne 0 ]]; then
+				yabai -m window --insert $dir
+				yabai -m window $window --toggle float
+				yabai -m window $window --toggle float
+			fi
+			;;
+		*)
+			yabai -m window --swap $2 || yabai -m window --display $2
+			;;
+		esac
+		yabai -m window --focus $w_id
+		# hlActiveWindow
+	else
+		case $2 in
+		center) yabai -m window --grid $GRID_CENTER ;;
+		north) yabai -m window --grid $GRID_NORTH ;;
+		south) yabai -m window --grid $GRID_SOUTH ;;
+		east) yabai -m window --grid $GRID_EAST ;;
+		west) yabai -m window --grid $GRID_WEST ;;
+		esac
+	fi
+	;;
 
-  toggle-layout)
-    if [[ $(yabai -m config layout) = "bsp" ]]; then
-      yabai -m config layout float
-    else
-      yabai -m config layout bsp
-    fi
-    ;;
+toggle-layout)
+	if [[ $(yabai -m config layout) = "bsp" ]]; then
+		yabai -m config layout float
+	else
+		yabai -m config layout bsp
+	fi
+	;;
 
-  stack-window)
-    # stack onto existing stack if possible
-    yabai -m window $2 --stack $w_id
-    if [[ $? -ne 0 ]]; then
-      yabai -m window --insert $2
-      yabai -m window $window --toggle float
-      yabai -m window $window --toggle float
-    fi
-    ;;
+stack-window)
+	# stack onto existing stack if possible
+	yabai -m window $2 --stack $w_id
+	if [[ $? -ne 0 ]]; then
+		yabai -m window --insert $2
+		yabai -m window $window --toggle float
+		yabai -m window $window --toggle float
+	fi
+	;;
 
-  auto-stack)
-    # grab most-recent window of the same app
-    target=$(yabai -m query --windows --space mouse \
-      | jq -r 'map(select(.app=='$w_app' and ."is-minimized"==false and ."is-floating"==false and ."has-focus"==false))[0].id')
-    # stack current window on it
-    yabai -m window $target --stack $w_id
-    ;;
+auto-stack)
+	# grab most-recent window of the same app
+	target=$(yabai -m query --windows --space mouse |
+		jq -r 'map(select(.app=='$w_app' and ."is-minimized"==false and ."is-floating"==false and ."has-focus"==false))[0].id')
+	# stack current window on it
+	yabai -m window $target --stack $w_id
+	;;
 
-  *)
-    echo -n "Invalid command."
-    ;;
+*)
+	echo -n "Invalid command."
+	;;
 
 esac
 

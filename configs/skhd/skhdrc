@@ -69,7 +69,11 @@ cmd + lctrl - right         : yabai -m window --resize right:50:0; \
 
 # toggle float
 cmd + lctrl - space         : yabai -m window --toggle float; \
-                              yabai -m window --grid 6:6:1:1:4:4
+                              yabai -m window --grid 8:8:2:1:4:6
+
+# set window opaque
+cmd + lctrl - 0x2F          : yabai -m window --opacity 1.0
+cmd + lctrl - 0x2B          : yabai -m window --opacity 0.0
 
 # toggle zoom-fullscreen
 cmd + lctrl - g             : yabai -m window --toggle zoom-fullscreen
