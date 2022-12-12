@@ -14,9 +14,6 @@
         path: dots/*
         prefix: '.'
         force: true
-    ~/.vim/:
-        glob: true
-        path: configs/vim/*
     ~/.local/bin/:
         glob: true
         path: bin/*

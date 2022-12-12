@@ -6,3 +6,6 @@
 	path = configs/nvim
 	url = https://github.com/AstroNvim/AstroNvim
 	branch = main
+[submodule "configs/hammerspoon/stackline"]
+	path = configs/hammerspoon/stackline
+	url = git@github.com:AdamWagner/stackline.git
