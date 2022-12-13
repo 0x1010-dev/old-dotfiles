@@ -8,4 +8,4 @@
 	branch = main
 [submodule "configs/hammerspoon/stackline"]
 	path = configs/hammerspoon/stackline
-	url = git@github.com:AdamWagner/stackline.git
+	url = https://github.com/AdamWagner/stackline.git
