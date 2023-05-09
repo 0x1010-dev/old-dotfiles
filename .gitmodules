@@ -6,6 +6,6 @@
 	path = configs/nvim
 	url = https://github.com/AstroNvim/AstroNvim
 	branch = main
-[submodule "configs/hammerspoon/stackline"]
-	path = configs/hammerspoon/stackline
-	url = https://github.com/AdamWagner/stackline
+[submodule "configs/tmux/plugins/tpm"]
+	path = configs/tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm.git
