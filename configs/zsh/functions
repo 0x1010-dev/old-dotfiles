@@ -17,5 +17,7 @@ if [[ -e $commands[thefuck] ]]; then
     bindkey -M viins '\e\e' fuck-cmd
 fi
 
-
-
+# rdp tunnel
+function rdpt() {
+    ssh -L 33389:$1:3389 -Nv tunnel
+}

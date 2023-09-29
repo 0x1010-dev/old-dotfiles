@@ -6,3 +6,6 @@
 	path = configs/nvim
 	url = https://github.com/AstroNvim/AstroNvim
 	branch = main
+[submodule "configs/tmux/plugins/tpm"]
+	path = configs/tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm.git
